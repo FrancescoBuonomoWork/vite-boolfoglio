@@ -16,7 +16,7 @@ export default{
             axios.get(`${this.BASE_URL}/projects`)
                 .then((res) => {
                 console.log(res);
-                this.projects = res.data.results;
+                this.projects = res.data.results.data;
             });
         }
     },
@@ -35,7 +35,10 @@ export default{
     {{ project.name }}
   </div> -->
   <div class="container">
-    <ProjectCard v-for="project in projects" :project="project" :key="project.id"/>
+    <div class="grid">
+
+      <ProjectCard v-for="project in projects" :project="project" :key="project.id"/>
+    </div>
   </div>
   
  
@@ -43,5 +46,15 @@ export default{
 
 <style lang="scss">
 @use 'style/general.scss';
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+.grid {
+  padding-top: 30px;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(4,1fr);
+}
 
 </style>
