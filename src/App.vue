@@ -1,10 +1,10 @@
 <script>
 import axios from 'axios';
-import CardProject from './components/CardProject.vue';
+import ProjectCard from './components/ProjectCard.vue';
 
 
 export default{
-    components: {CardProject},
+    components: {ProjectCard},
     data() {
         return {
             projects: [],
@@ -35,7 +35,7 @@ export default{
     {{ project.name }}
   </div> -->
   <div class="container">
-    <CardProject v-for="project in projects" :project="project" :key="project.id"/>
+    <ProjectCard v-for="project in projects" :project="project" :key="project.id"/>
   </div>
   
  
