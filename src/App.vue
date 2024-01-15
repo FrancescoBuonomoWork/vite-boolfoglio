@@ -1,28 +1,29 @@
 <script>
 import axios from 'axios';
+import CardProject from './components/CardProject.vue';
+
 
 export default{
-  data(){
-    return{
-      projects: [],
-      BASE_URL :'http://localhost:8000/api'
-    }
-  },
-  methods:{
-
-    FetchProjects(){
-
-      axios.get(`${this.BASE_URL}/projects`)
-      .then((res)=>{
-        console.log(res)
-        this.projects = res.data.results
-      })
-     
-    }
-  },
-  created(){
-    this.FetchProjects()
-  }
+    components: {CardProject},
+    data() {
+        return {
+            projects: [],
+            BASE_URL: 'http://localhost:8000/api'
+        };
+    },
+    methods: {
+        FetchProjects() {
+            axios.get(`${this.BASE_URL}/projects`)
+                .then((res) => {
+                console.log(res);
+                this.projects = res.data.results;
+            });
+        }
+    },
+    created() {
+        this.FetchProjects();
+    },
+    
 }
 
 
@@ -30,9 +31,13 @@ export default{
 
 <template>
 
-  <div v-for="project in projects" :key="project.id">
+  <!-- <div v-for="project in projects" :key="project.id">
     {{ project.name }}
+  </div> -->
+  <div class="container">
+    <CardProject v-for="project in projects" :project="project" :key="project.id"/>
   </div>
+  
  
 </template>
 
