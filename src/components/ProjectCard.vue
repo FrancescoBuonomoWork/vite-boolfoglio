@@ -22,7 +22,7 @@ export default{
     <div class="card">
        <h2 class="card-title">{{ project.name }}</h2>
        <p v-if="project.type.name">{{ project.type.name }}</p>
-       <ul>
+       <ul v-if="project.technologies">
         <li v-for="tech in project.technologies" :key="tech.id">{{ tech.name }}</li>
        </ul>
 
