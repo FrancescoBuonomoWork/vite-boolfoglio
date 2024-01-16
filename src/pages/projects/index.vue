@@ -38,7 +38,7 @@ export default{
     <div class="grid">
 
       <ProjectCard v-for="project in projects" :project="project" :key="project.id"/>
-      
+
     </div>
   </div>
   
