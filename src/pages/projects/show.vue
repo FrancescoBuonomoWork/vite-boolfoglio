@@ -1,15 +1,26 @@
 <script>
-
+import axios from 'axios';
 export default{
     props: {
         slug :String
     },
     data(){
         return{
-            
+            BASE_URL: 'http://localhost:8000/api',
+            project: null
+        }
+    },
+    methods:{
+        fetchProject(){
+            // console.log('fetch')
+            axios.get(`${this.BASE_URL}/projects/${this.slug}`).then(res=>{
+                console.log(res.data);
+                this.project = res.data;
+            })
         }
     },
     created(){
+        this.fetchProject(),
     //    console.log(this.slug);
     console.log(this.$route.params.slug);
     }
@@ -19,6 +30,14 @@ export default{
 <template>
 <div class="container">
     {{ slug }}
+    <div class="card">
+        <h1>{{ project?.project.name }}</h1>
+        <p v-if="project.project.type">{{ project?.project.type.name }}</p>
+
+        <ul v-if="project.project.technologies">
+            <li v-for="tech in project.project.technologies">{{ tech.name }}</li>
+        </ul>
+    </div>
 </div>
 </template>
 
