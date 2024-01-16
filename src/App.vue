@@ -22,8 +22,8 @@ export default{
 
 <template>
 
-<ProjectIndex/>
-
+<!-- <ProjectIndex/> -->
+<RouterView></RouterView>
   
  
 </template>

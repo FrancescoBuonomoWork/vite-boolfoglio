@@ -35,6 +35,7 @@ export default{
     {{ project.name }}
   </div> -->
   <div class="container">
+    <h1>I progetti :</h1>
     <div class="grid">
 
       <ProjectCard v-for="project in projects" :project="project" :key="project.id"/>
@@ -47,15 +48,7 @@ export default{
 
 <style lang="scss" scoped>
 
-.container{
-  width: 1000px;
-  margin: 0 auto;
-}
-.grid {
-  padding-top: 30px;
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(4,1fr);
-}
+
+
 
 </style>

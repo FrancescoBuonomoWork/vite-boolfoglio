@@ -1,6 +1,17 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+.container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.grid {
+    padding-top: 30px;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+}

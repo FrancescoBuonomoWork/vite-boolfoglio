@@ -1,13 +1,14 @@
 <script>
+
 </script>
 
 <template>
-    <div>
-        <ul>
-            
-        </ul>
+    <div class="container">
+        <h1>Home page</h1>
+        <p>Benvenuto</p>
     </div>
 </template>
 
 <style lang="scss">
+
 </style>
