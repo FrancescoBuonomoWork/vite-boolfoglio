@@ -3,34 +3,63 @@ import axios from 'axios';
 import ProjectCard from '../../components/ProjectCard.vue';
 
 
-export default{
-    components: {ProjectCard},
-    data() {
-        return {
-            projects: [],
-            BASE_URL: 'http://localhost:8000/api'
-        };
+export default {
+  components: { ProjectCard },
+  data() {
+    return {
+      projects: [],
+      BASE_URL: 'http://localhost:8000/api',
+      next_page_url: null,
+      prev_page_url: null,
+      loadingProjects: false
+    };
+  },
+  methods: {
+    parseResult(res) {
+      console.log(res);
+      this.projects = res.data.results.data;
+      this.next_page_url = res.data.results.next_page_url;
+      this.prev_page_url = res.data.results.prev_page_url;
     },
-    methods: {
-        FetchProjects() {
-            axios.get(`${this.BASE_URL}/projects`)
-                .then((res) => {
-                console.log(res);
-                this.projects = res.data.results.data;
-            });
-        }
+    fetchProjects() {
+
+      this.loadingProjects = true;
+
+      axios.get(`${this.BASE_URL}/projects`)
+        .then((res) => {
+        
+          this.parseResult(res);
+          this.loadingProjects = false;
+        });
     },
-    created() {
-        this.FetchProjects();
+    nextFetch() {
+      this.loadingProjects = true;
+      // console.log(this.next_page_url);
+      axios.get(`${this.next_page_url}`)
+        .then((res) => {
+          this.parseResult(res);
+          this.loadingProjects = false;
+        });
     },
-    
+    prevFetch() {
+      this.loadingProjects = true;
+      axios.get(`${this.prev_page_url}`)
+        .then((res) => {
+          this.parseResult(res);
+          this.loadingProjects = false;
+        });
+    }
+  },
+  created() {
+    this.fetchProjects();
+  },
+
 }
 
 
 </script>
 
 <template>
-
   <!-- <div v-for="project in projects" :key="project.id">
     {{ project.name }}
   </div> -->
@@ -38,17 +67,22 @@ export default{
     <h1>I progetti :</h1>
     <div class="grid">
 
-      <ProjectCard v-for="project in projects" :project="project" :key="project.id"/>
+      <h1 v-show="loadingProjects">Caricamento...</h1>
+      <ProjectCard v-show="!loadingProjects" v-for="project in projects" :project="project" :key="project.id" />
 
     </div>
+    <div class="arrow-wrapper">
+      <span @click="prevFetch()" v-show="prev_page_url">prev</span>
+      <span @click="nextFetch()" v-show="next_page_url">next</span>
+    </div>
   </div>
-  
- 
 </template>
 
 <style lang="scss" scoped>
-
-
-
-
+.arrow-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 </style>

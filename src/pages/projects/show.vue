@@ -7,15 +7,18 @@ export default{
     data(){
         return{
             BASE_URL: 'http://localhost:8000/api',
-            project: null
+            project: {}
         }
     },
     methods:{
         fetchProject(){
             // console.log('fetch')
-            axios.get(`${this.BASE_URL}/projects/${this.slug}`).then(res=>{
+            axios.get(`${this.BASE_URL}/projects/${this.slug}`)
+            .then(res=>{
                 console.log(res.data);
-                this.project = res.data;
+                this.project = res.data.project;
+            }).catch((error)=>{
+                console.log(error)
             })
         }
     },
@@ -29,13 +32,13 @@ export default{
 
 <template>
 <div class="container">
-    {{ slug }}
+    <!-- {{ slug }} -->
     <div class="card">
-        <h1>{{ project?.project.name }}</h1>
-        <p v-if="project.project.type">{{ project?.project.type.name }}</p>
+        <h1>{{ project?.name }}</h1>
+        <p v-if="project.type">{{ project?.type.name }}</p>
 
-        <ul v-if="project.project.technologies">
-            <li v-for="tech in project.project.technologies">{{ tech.name }}</li>
+        <ul v-if="project.technologies">
+            <li v-for="tech in project.technologies">{{ tech.name }}</li>
         </ul>
     </div>
 </div>
