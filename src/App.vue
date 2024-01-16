@@ -1,9 +1,10 @@
 <script>
 import ProjectIndex from './pages/projects/index.vue';
+import HeaderPage from './components/AppHeader.vue';
 
 
 export default{
-    components: {ProjectIndex},
+    components: {ProjectIndex,HeaderPage},
     data() {
         return {
        
@@ -23,6 +24,7 @@ export default{
 <template>
 
 <!-- <ProjectIndex/> -->
+<HeaderPage/>
 <RouterView></RouterView>
   
  
