@@ -72,8 +72,8 @@ export default {
 
     </div>
     <div class="arrow-wrapper">
-      <span @click="prevFetch()" v-show="prev_page_url">prev</span>
-      <span @click="nextFetch()" v-show="next_page_url">next</span>
+      <span @click="prevFetch()" v-show="prev_page_url"><font-awesome-icon :icon="['fas', 'chevron-left']" /></span>
+      <span @click="nextFetch()" v-show="next_page_url"><font-awesome-icon :icon="['fas', 'chevron-right']" /></span>
     </div>
   </div>
 </template>

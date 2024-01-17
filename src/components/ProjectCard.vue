@@ -29,7 +29,7 @@ export default{
             <li v-for="tech in project.technologies" :key="tech.id">{{ tech.name }}</li>
         </ul>
         
-        <router-link :to="{ name: 'projects.show', params: { slug: project.slug} }">
+        <router-link class="link" :to="{ name: 'projects.show', params: { slug: project.slug} }">
             vedi altro...
         </router-link>
     </div>
@@ -41,6 +41,9 @@ export default{
     padding: 20px;
     border: 2px solid gray;
     border-radius: 10px;
-
+    .link{
+        color: cornflowerblue;
+        font-size: 18px;
+    }
 }
 </style>
