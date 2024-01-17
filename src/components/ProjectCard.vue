@@ -22,8 +22,10 @@ export default{
 <template>
     <div class="card">
         
-        <h2 class="card-title">{{ project.name }}</h2>           
-        <p >{{project.type ? project.type.name : '-' }}</p>
+        <h2 class="card-title">{{ project.name }}</h2>
+        
+        <router-link v-if="project.type" :to="{ name : 'type.archive', params:{ slug:project.type.slug}}">{{ project.type.name }}</router-link>
+        <p v-else>-</p>
         <!-- <p v-if="project.type">{{ project.type.name  }}</p> -->
         <ul v-if="project.technologies">
             <li v-for="tech in project.technologies" :key="tech.id">{{ tech.name }}</li>

@@ -7,6 +7,8 @@ import NotFound from './pages/NotFound.vue';
 import ProjectIndex from './pages/projects/index.vue';
 import ProjectShow from './pages/projects/show.vue';
 
+import TypesArchive from './pages/types/Archive.vue';
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -31,6 +33,12 @@ const router = createRouter({
             name: 'projects.show',
             props: true,
             component: ProjectShow
+        },
+        {
+            path: '/types/:slug',
+            name: 'type.archive',
+            props: true,
+            component: TypesArchive
         },
         {
             path:'/:pathMatch(.*)*',

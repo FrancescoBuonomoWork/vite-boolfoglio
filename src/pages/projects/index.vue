@@ -72,8 +72,8 @@ export default {
 
     </div>
     <div class="arrow-wrapper">
-      <span @click="prevFetch()" v-show="prev_page_url"><font-awesome-icon :icon="['fas', 'chevron-left']" /></span>
-      <span @click="nextFetch()" v-show="next_page_url"><font-awesome-icon :icon="['fas', 'chevron-right']" /></span>
+      <span @click="prevFetch()" v-show="prev_page_url" class="arrow"><font-awesome-icon :icon="['fas', 'chevron-left']" /></span>
+      <span @click="nextFetch()" v-show="next_page_url" class="arrow"><font-awesome-icon :icon="['fas', 'chevron-right']" /></span>
     </div>
   </div>
 </template>
@@ -84,5 +84,10 @@ export default {
   display: flex;
   justify-content: center;
   gap: 20px;
+  .arrow{
+    cursor: pointer;
+    padding: 20px;
+    
+  }
 }
 </style>
