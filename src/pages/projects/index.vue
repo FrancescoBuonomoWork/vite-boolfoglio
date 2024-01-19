@@ -20,15 +20,15 @@ export default {
     parseResult(res) {
       console.log(res);
       this.projects = res.data.results.projects.data;
-      this.next_page_url = res.data.results.next_page_url;
-      this.prev_page_url = res.data.results.prev_page_url;
+      this.next_page_url = res.data.results.projects.next_page_url;
+      this.prev_page_url = res.data.results.projects.prev_page_url;
 
     },
     fetchProjects() {
 
       this.loadingProjects = true;
 
-      axios.get(`${this.BASE_URL}/projects?type_id=2&technoligies[]=1&technoligies[]=9`)
+      axios.get(`${this.BASE_URL}/projects`)
         .then((res) => {
 
           this.parseResult(res);
@@ -88,12 +88,8 @@ export default {
         <template v-for="tech in technologies">
           <input  type="checkbox" :id="tech.slug" :name="tech.slug" :value="tech.id">
           <label :for="tech.slug">{{ tech.name }}</label>
-
-
         </template>
        <button @click="">Cerca</button>
-        
-
       </div> -->
     <div class="grid">
 
@@ -122,4 +118,5 @@ export default {
     padding: 20px;
 
   }
-}</style>
+}
+</style>
